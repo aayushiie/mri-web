@@ -52,5 +52,5 @@ The model was trained on a brain MRI dataset from kaggle containing four classes
 - No Tumor
 
 ## Demo
-![Home](i (1).png)
-![Prediction](i (2).png)
+![Home](i1.png)
+![Prediction](i2.png)
