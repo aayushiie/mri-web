@@ -44,9 +44,13 @@ The application downloads the model automatically on first startup.
 
 ## Dataset
 
-The model was trained on a brain MRI dataset containing four classes:
+The model was trained on a brain MRI dataset from kaggle containing four classes:
 
 - Glioma
 - Meningioma
 - Pituitary Tumor
 - No Tumor
+
+## Demo
+![Home](i (1).png)
+![Prediction](i (2).png)
