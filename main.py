@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, send_from_directory
 from tensorflow.keras.models import load_model
+import requests
 from keras.preprocessing.image import load_img, img_to_array
 import numpy as np
 import os
@@ -8,7 +9,24 @@ import os
 app = Flask(__name__)
 
 # Load the trained model
-model = load_model('models/model.h5')
+MODEL_URL = "https://huggingface.co/aayushiie/brain-tumor-cnn/resolve/main/model.h5"
+MODEL_PATH = "models/model.h5"
+
+os.makedirs("models", exist_ok=True)
+
+if not os.path.exists(MODEL_PATH):
+    print("Downloading model...")
+    response = requests.get(MODEL_URL, stream=True)
+    response.raise_for_status()
+
+    with open(MODEL_PATH, "wb") as f:
+        for chunk in response.iter_content(chunk_size=8192):
+            if chunk:
+                f.write(chunk)
+
+    print("Model downloaded successfully.")
+
+model = load_model(MODEL_PATH)
 
 # Class labels
 class_labels = ['glioma', 'meningioma', 'notumor', 'pituitary']
